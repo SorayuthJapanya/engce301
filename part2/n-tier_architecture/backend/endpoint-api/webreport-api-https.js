@@ -81,7 +81,9 @@ const init = async () => {
     validate: async (request, token, h) => {
       // here is where you validate your token
       // comparing with token from your database for example
-      const isValid = token === '1aaZ!ARgAQGuQzp00D5D000000.mOv2jmhXkfIsjgywpCIh7.HZpc6vED1LCbc90DTaVDJwdNqbTW5r4uZicv8AFfkOE1ialqnR8UN5.wnAgh090h';
+      const isValid =
+        token ===
+        '1aaZ!ARgAQGuQzp00D5D000000.mOv2jmhXkfIsjgywpCIh7.HZpc6vED1LCbc90DTaVDJwdNqbTW5r4uZicv8AFfkOE1ialqnR8UN5.wnAgh090h';
       const credentials = { token };
       const artifacts = { test: 'info' };
 
@@ -127,6 +129,10 @@ const init = async () => {
 
   //-------- Your Code continue here -------------------
 
+  /*-------------------------------------------*/
+  /* API Name: getOnlineAgentByAgentCode       */
+  /* Method: 'GET'                             */
+  /*-------------------------------------------*/
   server.route({
     method: 'GET',
     path: '/api/v1/getOnlineAgentByAgentCode',
@@ -181,6 +187,10 @@ const init = async () => {
     },
   });
 
+  /*-------------------------------------------*/
+  /* API Name: postOnlineAgentStatus       */
+  /* Method: 'POST'                             */
+  /*-------------------------------------------*/
   server.route({
     method: 'POST',
     path: '/api/v1/postOnlineAgentStatus',
@@ -208,7 +218,13 @@ const init = async () => {
       },
     },
     handler: async (request, h) => {
-      const { payload } = request;
+      let param = request.payload;
+
+      const AgentCode = param.AgentCode;
+      const AgentName = param.AgentName;
+      const IsLogin = param.IsLogin;
+      const AgentStatus = param.AgentStatus;
+      var d = new Date();
 
       try {
         //console.dir(payload);
@@ -222,10 +238,10 @@ const init = async () => {
         else {
           const responsedata =
             await OnlineAgent.OnlineAgentRepo.postOnlineAgentStatus(
-              payload.AgentCode,
-              payload.AgentName,
-              payload.IsLogin,
-              payload.AgentStatus
+              AgentCode,
+              AgentName,
+              IsLogin,
+              AgentStatus
             );
 
           if (responsedata.statusCode == 500)
