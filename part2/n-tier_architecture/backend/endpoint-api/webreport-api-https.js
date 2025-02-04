@@ -228,12 +228,12 @@ const init = async () => {
 
       try {
         //console.dir(payload);
-        console.log(payload.AgentCode);
-        console.log(payload.AgentName);
-        console.log(payload.IsLogin);
-        console.log(payload.AgentStatus);
+        console.log(AgentCode);
+        console.log(AgentName);
+        console.log(IsLogin);
+        console.log(AgentStatus);
 
-        if (payload.AgentCode == null)
+        if (AgentCode == null)
           return h.response('Please provide agentcode.').code(400);
         else {
           const responsedata =
