@@ -226,7 +226,7 @@ const init = async () => {
         //return ('API1');
 
         if (param.agentcode == null)
-          return h.response({error:'Please provide agentcode.'}).code(400);
+          return h.response({ error: 'Please provide agentcode.' }).code(400);
         else {
           const responsedata =
             await OnlineAgent.OnlineAgentRepo.getOnlineAgentByAgentCode(
@@ -235,14 +235,14 @@ const init = async () => {
 
           if (responsedata.statusCode == 500)
             return h
-              .response({'error':'Something went wrong. Please try again later.'})
+              .response({ 'error': 'Something went wrong. Please try again later.' })
               .code(500);
           else if (responsedata.statusCode == 200) return responsedata;
           else if (responsedata.statusCode == 404)
             return h.response(responsedata).code(404);
           else
             return h
-              .response({'error':'Something went wrong. Please try again later.'})
+              .response({ 'error': 'Something went wrong. Please try again later.' })
               .code(500);
         }
       } catch (err) {
@@ -298,7 +298,7 @@ const init = async () => {
         console.log(AgentStatus);
 
         if (AgentCode == null)
-          return h.response({error:'Please provide agentcode.'}).code(400);
+          return h.response({ error: 'Please provide agentcode.' }).code(400);
         else {
           const responsedata =
             await OnlineAgent.OnlineAgentRepo.postOnlineAgentStatus(
@@ -307,8 +307,6 @@ const init = async () => {
               IsLogin,
               AgentStatus
             );
-
-<<<<<<< HEAD
           // -------------------- Websocket Part2 start----------
 
           console.log("AgentCode: " + AgentCode)
@@ -335,25 +333,41 @@ const init = async () => {
           }
 
 
-          // -------------------- Websocket Part2 end------------
+          //---------------- Websocket Part2 Start -----------------------
+          console.log("AgentCode: " + AgentCode)
 
-=======
-            //---------------- Websocket Part2 Start ---------------------
+          if (!responsedata.error) {
 
-            
-            //---------------- Websocket Part2 End -----------------------
->>>>>>> 1dfa384 (Websocket lines)
+            if (clientWebSockets[AgentCode]) {
+
+              console.log("Sennding MessageType")
+              clientWebSockets[AgentCode].send(JSON.stringify({
+                MessageType: '1',
+                AgentCode: AgentCode,
+                AgentName: AgentName,
+                IsLogin: IsLogin,
+                AgentStatus: AgentStatus,
+                DateTime: d.toLocaleString('en-US'),
+              }));
+
+              return ({
+                error: false,
+                message: "Agent status has been set.",
+              });
+            }
+          }
+          //---------------- Websocket Part2 End -----------------------
 
           if (responsedata.statusCode == 500)
             return h
-              .response({'error':'Something went wrong. Please try again later.'})
+              .response({ 'error': 'Something went wrong. Please try again later.' })
               .code(500);
           else if (responsedata.statusCode == 200) return responsedata;
           else if (responsedata.statusCode == 404)
             return h.response(responsedata).code(404);
           else
             return h
-              .response({'error':'Something went wrong. Please try again later.'})
+              .response({ 'error': 'Something went wrong. Please try again later.' })
               .code(500);
         }
       } catch (err) {
@@ -378,12 +392,12 @@ const init = async () => {
           '*'
         ],
         headers: [
-          "Access-Control-Allow-Headers", 
-          "Access-Control-Allow-Origin", 
-          "Accept", 
-          "Authorization", 
-          "Content-Type", 
-          "If-None-Match", 
+          "Access-Control-Allow-Headers",
+          "Access-Control-Allow-Origin",
+          "Accept",
+          "Authorization",
+          "Content-Type",
+          "If-None-Match",
           "Accept-language"],
         additionalHeaders: [
           "Access-Control-Allow-Headers: Origin, Content-Type, x-ms-request-id , Authorization"],

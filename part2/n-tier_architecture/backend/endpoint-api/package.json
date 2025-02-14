@@ -9,7 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@hapi/hapi": "^21.3.10",
+    "@hapi/hapi": "^21.3.12",
     "@hapi/inert": "^7.1.0",
     "@types/hapi-auth-bearer-token": "^6.1.8",
     "async": "^3.2.5",
