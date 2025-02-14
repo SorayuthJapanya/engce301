@@ -32,7 +32,10 @@ router.get('/status', function (req, res) {
 //connect path to router
 app.use('/', router);
 
-//----------------------------------------------
+//---------------- Websocket Part1 Start ---------------------
+
+
+//---------------- Websocket Part1 End -----------------------
 
 //---------- Websocket Part1 Start--------------
 
@@ -305,6 +308,7 @@ const init = async () => {
               AgentStatus
             );
 
+<<<<<<< HEAD
           // -------------------- Websocket Part2 start----------
 
           console.log("AgentCode: " + AgentCode)
@@ -333,6 +337,12 @@ const init = async () => {
 
           // -------------------- Websocket Part2 end------------
 
+=======
+            //---------------- Websocket Part2 Start ---------------------
+
+            
+            //---------------- Websocket Part2 End -----------------------
+>>>>>>> 1dfa384 (Websocket lines)
 
           if (responsedata.statusCode == 500)
             return h
