@@ -2,14 +2,14 @@ import React from 'react'
 
 export const DisplayBoard = ({numberOfMovies, getAllMovies}) => {
 
-    const headerStyle = {
+    // const headerStyle = {
 
-        width: '100%',
-        padding: '2%',
-        backgroundColor: "red",
-        color: 'white',
-        textAlign: 'center'
-    }
+    //     width: '100%',
+    //     padding: '2%',
+    //     backgroundColor: "red",
+    //     color: 'white',
+    //     textAlign: 'center'
+    // }
     
     return(
         <div style={{backgroundColor:'green'}} className="display-board">

@@ -13,7 +13,7 @@ import { getAllMovies, createMovie, searchMovie } from './services/MovieService'
 function App() {
 
   //--------------
-  const [search_data, setSearch_data] = useState({})
+  const [search_data] = useState({})
   const [movie, setMovie] = useState({})
   const [movies, setMovies] = useState([])
   const [numberOfMovies, setNumberOfMovies] = useState(0)
@@ -29,21 +29,22 @@ function App() {
     fetchAllMovies(); /* */
   }
 
-
   const movieSearch = (e) => {
-    
-    
-    console.log(search_data.search_text);
+    if (e && e.preventDefault) {
+        e.preventDefault();  // ป้องกันการรีเฟรชหน้า
+    }
 
-    searchMovie("jok")
-      .then(movies => {
-        console.log(movies.data);
-        setMovies(movies.data);
-        setNumberOfMovies(movies.data.length);
+    console.log("Searching :", search_data.search_text);
 
-      });
+    searchMovie(search_data.search_text )
+        .then(movies => {
+            console.log("Result:", movies);
+            setMovies(movies.data);
+            setNumberOfMovies(movies.data.length);
+        })
+        .catch(error => console.error("❌ Error fetching movies:", error));
+};
 
-  }
 
 
   const fetchAllMovies = () => {
@@ -64,7 +65,7 @@ function App() {
         setMovies(movies);
         setNumberOfMovies(movies.length)
       });
-      
+
 
   }, [])
 
@@ -82,12 +83,12 @@ function App() {
   }
 
 
-  const onChangeForm2 = (e) => {
-    if (e.target.name === 'search_text') {
-      search_data.search_text = e.target.value;
-    } 
-    setSearch_data(search_data)
-  }
+  // const onChangeForm2 = (e) => {
+  //   if (e.target.name === 'search_text') {
+  //     search_data.search_text = e.target.value;
+  //   } 
+  //   setSearch_data(search_data)
+  // }
 
 
   return (
@@ -115,13 +116,13 @@ function App() {
       </div>
       <div className="row mrgnbtm">
 
-          <SearchMovie
-              // user={user}
-              movie={movie}
-              onChangeForm={onChangeForm}
-              searchMovie={movieSearch}
-            >
-          </SearchMovie>
+        <SearchMovie
+          // user={user}
+          movie={movie}
+          onChangeForm={onChangeForm}
+          searchMovie={movieSearch}
+        >
+        </SearchMovie>
 
         {/* <SearchBoard
           // user={user}
