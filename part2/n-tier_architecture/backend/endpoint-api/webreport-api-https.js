@@ -4,7 +4,7 @@ const AuthBearer = require('hapi-auth-bearer-token');
 let fs = require('fs');
 let cors = require('cors');
 
-const OnlineAgent = require('./repository/OnlineAgent');
+const OnlineAgent = require('./repository/OnlineAgent')
 
 //-------------------------------------
 

@@ -1,8 +1,8 @@
 var dbconfig = {
     development: {
-        server: '192.168.56.106',
-        database:'team0_engce301_db',
-        user:'team0',
+        server: '192.168.214.129',
+        database:'team5_engce301_db',
+        user:'team5',
         password:'P@ssw0rd',
         port: 1433,
         options:{
@@ -16,8 +16,8 @@ var dbconfig = {
     },
     production: {
         server: '10.21.47.33', //CE Lab Server
-        database:'team0_engce301_db',
-        user:'team0',
+        database:'team5_engce301_db',
+        user:'team5',
         password:'P@ssw0rd',
         port: 1433,
         options:{
