@@ -62,7 +62,7 @@ async function postOnlineAgentStatus(AgentCode, AgentName, IsLogin, AgentStatus)
 
         let result = await pool.request()
             .input('agent_code', sql.VarChar(20), AgentCode)
-            .input('AgentName', sql.NVarChar, AgentName)
+            .input('AgentName', sql.NVarChar(20), AgentName)
             .input('IsLogin', sql.Char(1), IsLogin)
             .input('AgentStatus', sql.Char(1), AgentStatus)
             .query(`SELECT * FROM [OnlineAgents] WHERE [agent_code] = @agent_code`);

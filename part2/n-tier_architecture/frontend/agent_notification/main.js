@@ -10,11 +10,11 @@ const WindowManager = require('./Scripts/WindowManager.js');
 app.on('ready', windowManager.createUI.bind(windowManager));
 
 //When all windows are closed
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-})
+// app.on('window-all-closed', () => {
+//   if (process.platform !== 'darwin') {
+//     app.quit(
+//   }
+// })
 
 //--- When use self-signing certificate must be uncomment this line below. ---
 app.commandLine.appendSwitch("ignore-certificate-errors");
