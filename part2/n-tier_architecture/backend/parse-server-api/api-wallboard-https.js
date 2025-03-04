@@ -13,42 +13,51 @@ const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 var apiport = 4000;
 
 const config = {
-  databaseURI: 'mongodb://wallboard:wallboard1q2w3e4r@127.0.0.1:27017/wallboarddb',
+  databaseURI: 'mongodb://wallboarduser:WB1qazxsw2@192.168.214.129:27017/wallboarddb',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'wallboardapi',
   masterKey: process.env.MASTER_KEY || 'wallboardapi', //Add your master key here. Keep it secret!
   clientKey: 'wallboardapi',
   javascriptKey: 'wallboardapi',
-  serverURL: 'https://192.168.56.10:' + apiport + '/api', // Don't forget to change to https if needed
-  publicServerURL: 'https://192.168.56.10:' + apiport + '/api',
+  serverURL: 'https://172.17.111.72:' + apiport + '/api', // Don't forget to change to https if needed
+  publicServerURL: 'https://172.17.111.72:' + apiport + '/api',
   liveQuery: {
-    classNames: ['OnlineAgentLists', 'WallboardBanners','CallAgentSummaries'], // List of classes to support for query subscriptions
+    classNames: ["OnlineAgentLists", "WallboardBanners", "CallAgentSummaries"], // List of classes to support for query subscriptions
   },
+
+  masterKeyIps: ["0.0.0.0/0", "::/0"],
+  useMasterKey: true,
+  allowClientClassCreation: false,
+  allowExpiredAuthDataToken: false,
+  // encodeParseObjectInCloudFunction: false
 };
 
 const app = express();
 
 app.use(cors());
-app.use(cors({ origin: '*' }))
+app.use(cors({ origin: "*" }));
 
 // Serve static assets from the /public folder
-app.use('/', express.static(path.join(__dirname, '/wallboard')));
+app.use("/", express.static(path.join(__dirname, "/wallboard")));
 
 // Serve the Parse API on the /parse URL prefix
-const mountPath = '/api';
+const mountPath = "/api";
 const api = new ParseServer(config);
 
-var options = {
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.crt')
+// 3. Start up Parse Server asynchronously
+api.start();
+
+app.use(mountPath, api.app);
+
+const options = {
+  key: fs.readFileSync('server.key'),  // Path to your private key file
+  cert: fs.readFileSync('server.crt'),  // Path to your certificate file
 };
 
-app.use(mountPath, api);
-
-var httpsServer = require('https').createServer(options, app);
+var httpsServer = require("https").createServer(options, app);
 
 httpsServer.listen(apiport, function () {
-  console.log('Wallboard API running on port ' + apiport + '.');
+  console.log("Wallboard API (https) running on port " + apiport + ".");
 });
 
 ParseServer.createLiveQueryServer(httpsServer);

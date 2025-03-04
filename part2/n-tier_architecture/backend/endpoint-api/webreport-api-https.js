@@ -32,11 +32,6 @@ router.get('/status', function (req, res) {
 //connect path to router
 app.use('/', router);
 
-//---------------- Websocket Part1 Start ---------------------
-
-
-//---------------- Websocket Part1 End -----------------------
-
 //---------- Websocket Part1 Start--------------
 
 var webSocketServer = new (require('ws')).Server({
