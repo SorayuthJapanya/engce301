@@ -8,7 +8,7 @@ const wbconfig = {
         appId : "wallboardapi"
     },
     production: {
-        hosturl  : 'https://lab-parse-server.se-rmutl.net/api',
+        hosturl  : 'https://lab-parse-server.cpe-rmutl.net/team05/api',
         wsurl    : 'wss://lab-parse-server.se-rmutl.net',
         masterKey     : 'wallboardapi',
         clientKey     : 'wallboardapi',

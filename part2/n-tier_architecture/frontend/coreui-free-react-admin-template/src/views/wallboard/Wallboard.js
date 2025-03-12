@@ -11,7 +11,7 @@ import ReactAudioPlayer from 'react-audio-player'
 
 import wallboard_config from '../../wbconfig.js'
 
-const wbconfig = wallboard_config.development
+const wbconfig = wallboard_config[import.meta.env.PROD ? 'production' : 'development']
 
 import { Parse } from 'parse'
 
