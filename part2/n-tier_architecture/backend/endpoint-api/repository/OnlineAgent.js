@@ -5,6 +5,56 @@ const { v4: uuid } = require('uuid');
 
 console.log("sqlConfig: ", sqlConfig);
 
+
+// POST Login
+
+async function postLoginAgentByAgentCode(agentcode, agentpass) {
+
+    try {
+        console.log("Auth Agent Data: ", { agentcode, agentpass });
+
+        let pool = await sql.connect(sqlConfig);
+
+        let result = await pool.request()
+            .input('agentcode', agentcode)
+            .input('agentpass', agentpass)
+            .query(`
+            SELECT * FROM [OnlineAgents] 
+            WHERE agent_code = @agentcode AND agent_pass = @agentpass
+        `); //@agentcode, @agent_pass
+
+        console.log("result: ", result);
+
+        if (!result || result.recordsets[0].length === 0) {
+            console.log("result: ERROR");
+            return ({
+                error: true,
+                statusCode: 404,
+                errMessage: 'Agent not found',
+            });
+
+        } else {
+
+            return ({
+                error: false,
+                statusCode: 200,
+                data: result.recordset[0]
+            });
+
+        }
+
+    }
+    catch (error) {
+        console.log(error);
+        return ({
+            error: true,
+            statusCode: 500,
+            errMessage: 'An internal server error occurred',
+        });
+    }
+}
+
+// GET 
 async function getOnlineAgentByAgentCode(agentcode) {
 
     try {
@@ -117,6 +167,6 @@ async function postOnlineAgentStatus(AgentCode, AgentName, IsLogin, AgentStatus)
 
 module.exports.OnlineAgentRepo = {
 
-    getOnlineAgentByAgentCode: getOnlineAgentByAgentCode, postOnlineAgentStatus
+    getOnlineAgentByAgentCode: getOnlineAgentByAgentCode, postOnlineAgentStatus, postLoginAgentByAgentCode
 
 }

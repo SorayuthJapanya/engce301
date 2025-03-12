@@ -1,0 +1,51 @@
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T17:16:53.261Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T17:16:53.264Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T17:16:53.311Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T17:18:36.382Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T17:18:36.386Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T17:18:36.430Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T17:36:44.039Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T17:36:44.041Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T17:36:44.081Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T18:02:45.861Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T18:02:45.864Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T18:02:45.900Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T18:08:24.348Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T18:08:24.350Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T18:08:24.395Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T18:08:30.696Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T18:08:30.698Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T18:08:30.736Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T18:09:07.005Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T18:09:07.007Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T18:09:07.047Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T18:09:11.153Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T18:09:11.155Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T18:09:11.191Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T18:09:17.623Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T18:09:17.625Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T18:09:17.662Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T18:09:37.861Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T18:09:37.863Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T18:09:37.901Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T18:09:41.442Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T18:09:41.445Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T18:09:41.480Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T18:09:45.540Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T18:09:45.542Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T18:09:45.579Z"}
+{"functionName":"OnlineAgentByAgentCode","level":"info","message":"Ran cloud function OnlineAgentByAgentCode for user undefined with:\n  Input: {\"AgentCode\":\"1234\"}\n  Result: \"9\"","params":{"AgentCode":"1234"},"timestamp":"2025-03-03T18:11:14.555Z"}
+{"functionName":"postOnlineAgentListByTeam","level":"info","message":"Ran cloud function postOnlineAgentListByTeam for user undefined with:\n  Input: {\"AgentCode\":\"1234\",\"AgentName\":\"Test Agent2\",\"Team\":\"1\",\"AgentStatus\":\"1\",\"AgentStatusCode\":\"5\",\"IsLogin\":\"1\"}\n  Result: 0","params":{"AgentCode":"1234","AgentName":"Test Agent2","AgentStatus":"1","AgentStatusCode":"5","IsLogin":"1","Team":"1"},"timestamp":"2025-03-03T18:25:18.916Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T18:25:55.450Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T18:25:55.454Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T18:25:55.506Z"}
+{"functionName":"postOnlineAgentListByTeam","level":"info","message":"Ran cloud function postOnlineAgentListByTeam for user undefined with:\n  Input: {\"AgentCode\":\"1234\",\"AgentName\":\"Test Agent2\",\"Team\":\"1\",\"AgentStatus\":\"1\",\"AgentStatusCode\":\"5\",\"IsLogin\":\"1\"}\n  Result: 9","params":{"AgentCode":"1234","AgentName":"Test Agent2","AgentStatus":"1","AgentStatusCode":"5","IsLogin":"1","Team":"1"},"timestamp":"2025-03-03T18:26:05.521Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T21:24:17.178Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T21:24:17.181Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T21:24:17.222Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-03T21:27:11.112Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: useMasterKey","timestamp":"2025-03-03T21:27:11.114Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-03T21:27:11.152Z"}
+{"functionName":"hello","level":"info","message":"Ran cloud function hello for user undefined with:\n  Input: {}\n  Result: \"Hi From Parse Server\"","params":{},"timestamp":"2025-03-03T21:27:30.579Z"}
+{"level":"info","message":"Create new client: 6430627e-0463-4b5f-904b-363799a66610","timestamp":"2025-03-03T21:29:05.427Z"}
+{"level":"info","message":"Client disconnect: 6430627e-0463-4b5f-904b-363799a66610","timestamp":"2025-03-03T21:32:46.387Z"}
