@@ -21,6 +21,7 @@
         const timer = new Timer();
 
         var AgentCode;
+        var AgentPass;
         var agentStatusID;
         var callTotal = 0;
         var agentData;
@@ -177,24 +178,61 @@
         }
 
         function sendMessage() {
-            if ($("#destAgent").val() == "") {
-                alert("Please enter destination agent ");
-                $("#destAgent").focus();
-            } else if ($("#agentMsg").val() == "") {
-                alert("Please enter Message ");
+            if ($('#destAgent').val() == '') {
+                alert('Please enter destination agent ');
+                $('#destAgent').focus();
+            } else if ($('#agentMsg').val() == '') {
+                alert('Please enter Message ');
                 setTimeout(function () {
-                    $("#agentMsg").focus();
+                    $('#agentMsg').focus();
                 }, 0);
             } else {
                 const data = {
-                    FromAgentCode: $("#agent").val(),
-                    ToAgentCode: $("#destAgent").val(),
-                    Message: $("#agentMsg").val(),
+                    FromAgentCode: $('#agent').val(),
+                    ToAgentCode: $('#destAgent').val(),
+                    Message: $('#agentMsg').val(),
                 };
+
+                $.ajax({
+                    type: 'POST',
+                    url: APIServer + '/postSendMessage',
+                    headers: {
+                        Authorization:
+                            'Bearer 1aaZ!ARgAQGuQzp00D5D000000.mOv2jmhXkfIsjgywpCIh7.HZpc6vED1LCbc90DTaVDJwdNqbTW5r4uZicv8AFfkOE1ialqnR8UN5.wnAgh090h',
+                    },
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                })
+                    .done((data) => {
+                        console.log({ data });
+                    })
+                    .fail((err) => {
+                        console.error(err);
+                    })
+                    .always(() => {
+                        console.log('always called');
+                    });
             }
         }
 
         function checkInput(status) {
+
+            // pull data form input feild
+            const agentCode = $("#agent").val();
+            const agentPass = $("#pass").val();
+
+            console.log('form-data: ', { agentCode, agentPass });
+
+            if (!agentCode || !agentPass) {
+                alert("Please enter both Agent Code and Agent Pass !!");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("agentcode", agentCode);
+            formData.append("agentpass", agentPass);
+
+            // Check Agent Code
             if ($("#agent").val() == "") {
                 //alert("Please enter Agent Code");
                 $("#connectTime").empty().append("Please enter Agent Code !!");
@@ -203,9 +241,28 @@
             } else {
                 AgentCode = $("#agent").val();
 
+                // Check Agent Pass
+                if ($("#pass").val() == "") {
+                    $("#connectTime").empty().append("Plase enter Agent Pass !!")
+                    $("#pass").focus();
+                } else {
+                    AgentPass = $("#pass").val();
+                }
+
                 $.ajax({
-                    url:
-                        APIServer + "/getOnlineAgentByAgentCode?agentcode=" + AgentCode,
+                    url: APIServer + '/postLoginAgentByAgentCode',
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        if (response.error) {
+                            alert(response.errMessage);
+                        } else {
+                            alert('Connected successfully!');
+                            console.log('Agent Data:', response.data);
+                        }
+                    },
                     headers: {
                         "Authorization":
                             "Bearer 1aaZ!ARgAQGuQzp00D5D000000.mOv2jmhXkfIsjgywpCIh7.HZpc6vED1LCbc90DTaVDJwdNqbTW5r4uZicv8AFfkOE1ialqnR8UN5.wnAgh090h",
@@ -314,7 +371,7 @@
                 .empty()
                 .append("Connected");
 
-            // $('#statusLabel').empty().removeClass().addClass('badge bg-success').append('Available');
+            $('#statusLabel').empty().removeClass().addClass('badge bg-success').append('Available');
 
             counterTimer();
 
@@ -481,6 +538,8 @@
             $("#display").show();
             $("#agent").val("");
             $("#agent").focus();
+            $("#pass").val("");
+            $("#pass").focus();
 
             $("#errMessage").empty();
 
@@ -666,10 +725,71 @@
         }
 
         function GetSelectedTextValue(currentStatus) {
-            var selectedText =
-                currentStatus.options[currentStatus.selectedIndex].innerHTML;
-            var selectedValue = currentStatus.value;
+            const selectedText = currentStatus.options[currentStatus.selectedIndex].innerHTML;
+            // ดึงค่า selectedValue จาก dropdown
+            const selectedValue = currentStatus.value;
             alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+
+            // ดึงค่า agentcode จาก localStorage หรือ sessionStorage (ตัวอย่าง)
+            const agentCode = AgentCode;
+
+            if (!agentCode) {
+                alert("Agent code not found. Please login again.");
+                return;
+            }
+
+            // ดึงข้อมูล Agent จาก API
+            $.ajax({
+                url: APIServer + '/getOnlineAgentByAgentCode?agentcode=' + agentCode,
+                method: 'GET',
+                headers: {
+                    "Authorization":
+                        "Bearer 1aaZ!ARgAQGuQzp00D5D000000.mOv2jmhXkfIsjgywpCIh7.HZpc6vED1LCbc90DTaVDJwdNqbTW5r4uZicv8AFfkOE1ialqnR8UN5.wnAgh090h",
+                },
+                success: function (agentData) {
+                    if (agentData.error) {
+                        alert(agentData.errMessage); // แสดงข้อผิดพลาด
+                    } else {
+                        // สร้าง object form-data
+                        const payload  = {
+                            AgentCode: agentData.data.agent_code,
+                            AgentName: agentData.data.AgentName,
+                            IsLogin: agentData.data.IsLogin,
+                            AgentStatus: selectedValue, // ใช้ selectedValue จาก dropdown
+                        };
+
+                        console.log(payload);
+
+                        // ส่งข้อมูลไปยัง postOnlineAgentStatus
+                        $.ajax({
+                            url: APIServer + '/postOnlineAgentStatus',
+                            method: 'POST',
+                            contentType: 'application/json',
+                            headers: {
+                                "Authorization":
+                                    "Bearer 1aaZ!ARgAQGuQzp00D5D000000.mOv2jmhXkfIsjgywpCIh7.HZpc6vED1LCbc90DTaVDJwdNqbTW5r4uZicv8AFfkOE1ialqnR8UN5.wnAgh090h",
+                            },
+                            data: JSON.stringify(payload),
+                            success: function (response) {
+                                if (response.error) {
+                                    alert(response.errMessage); // แสดงข้อผิดพลาด
+                                } else {
+                                    alert('Agent status updated successfully!'); // แสดงข้อความสำเร็จ
+                                    console.log("Server Response:", response);
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                alert("An error occurred. Please try again later.");
+                                console.error("Error:", error);
+                            },
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert("Failed to fetch agent data. Please try again later.");
+                    console.error("Error:", error);
+                },
+            });
         }
     </script>
 
@@ -752,7 +872,7 @@
                                 </div>
                             </div>
 
-                        </div>    <!-- Step7 End  -->
+                        </div> <!-- Step7 End  -->
 
 
                     </div>
@@ -763,14 +883,22 @@
     </div>
 
     <div id="display">
-        <div class="row">
-            <div class="col-12">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control form-control-sm" id="agent" placeholder="Enter Agent Code" />
-                    <button id="buttonConnect" class="btn btn-warning btn-sm btn-block shadow"
-                        onclick="checkInput('on')">
-                        Connect
-                    </button>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title text-center mb-4 text-dark">Agent Login</h5>
+                        <div class="mb-3">
+                            <input type="text" class="form-control form-control-sm mb-3" id="agent"
+                                placeholder="Enter Agent Code" />
+                            <input type="password" class="form-control form-control-sm mb-3" id="pass"
+                                placeholder="Enter Agent Pass" />
+                            <button id="buttonConnect" class="btn btn-warning btn-sm btn-block shadow"
+                                onclick="checkInput('on')">
+                                Connect
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
