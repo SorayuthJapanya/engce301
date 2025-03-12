@@ -24,4 +24,4 @@ yarn-error.log*
 
 # ssl key
 server.key
-server.crt 
+server.crt "*:Zone.Identifier" 
